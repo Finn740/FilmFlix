@@ -1,0 +1,95 @@
+body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+margin: 0;
+padding: 0;
+}
+nav {
+background-color: black;
+color: #fff;
+padding: 28px;
+text-align: right;
+position: relative;
+top:0px;
+
+}
+button {
+background-color:black;
+color: white;
+border: none;
+padding: 10px 30px;
+margin-left: 45px;
+cursor: pointer;
+}
+button:hover {
+background-color: #777;
+}
+.logo {
+font-size: 30px;
+color: white;
+float: left;
+margin-right: 20px;
+}
+.Welkom {
+font-size: 32px;
+margin: 20px;
+position:relative;
+top:10px;
+}
+.Overzicht {
+font-size: 24px;
+left:20px;
+position:relative;
+top:20px;
+}
+.search-bar {
+  left: 20px;
+  position: relative;
+  top: 160px;
+  width: 95%;
+}
+.search-bar input {
+width: 90%; 
+padding: 10px; 
+box-sizing: border-box; 
+}
+.search-bar button { 
+    position:relative;
+    left:-25px;
+    height:39px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  position: relative;
+  top:135px;
+  left:18px;
+  padding:4px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 4px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+ .Bewerk{
+ padding:8px;
+}
+.Verwijder{
+    padding:8px;
+}
+.Vorige {
+position:relative;
+top: 140px;
+left:65px;
+}
+.Volgende {
+position: relative;
+top:140px;
+left:300px
+}
