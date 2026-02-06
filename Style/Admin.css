@@ -61,7 +61,7 @@ box-sizing: border-box;
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 98%;
   position: relative;
   top:135px;
   left:18px;
@@ -91,5 +91,5 @@ left:65px;
 .Volgende {
 position: relative;
 top:140px;
-left:300px
+left: 700px;
 }
