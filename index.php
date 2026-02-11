@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,8 +77,7 @@
     <button>vorige</button>
     <button>volgende</button>
     </div>
-</section>
-    
-    
+</section>   
+
 </body>
 </html>
