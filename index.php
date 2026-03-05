@@ -9,13 +9,15 @@
     <title>Document</title>
 </head>
 <body>
- <nav>
-        <h1>LOGO</h1>
-    <div id="buttons">
-    <button>log in</button>
-    <button>admin</button>
-    </div>
- </nav>  
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="video.php">Video's</a></li>
+      <li><a href="Admin.php">Admin</a></li>
+    </ul>
+  </nav>
+</header>
 <section id="welcome">
     <h1>Welkom bij film flix</h1>
     <h2>bekijk onze niewste videos</h2>
