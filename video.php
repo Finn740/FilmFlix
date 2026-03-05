@@ -18,6 +18,8 @@
   </nav>
 </header>
 
+<img src ="images/film_flix-nobg.png" alt="Logo" class="logo">
+
 <h1>Video Titel</h1>
 <p>Beschrijving van de video</p>    
 <video width="600" controls>
