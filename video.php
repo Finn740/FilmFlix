@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="Style/video.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Detail Page</title>
+    <link rel="stylesheet" href="Style/Video.css">
 </head>
 <body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="video.php">Video's</a></li>
+      <li><a href="Admin.php">Admin</a></li>
+    </ul>
+  </nav>
+</header>
+
 <h1>Video Titel</h1>
 <p>Beschrijving van de video</p>    
 <video width="600" controls>
