@@ -16,7 +16,7 @@
 
 <h2>Video Titel</h2>
 
-<p>Beschrijving van de video</p>
+<p> van de video</p>
 
 <hr class="divider">
 
