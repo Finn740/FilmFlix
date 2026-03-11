@@ -1,85 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-   <link rel= "stylesheet" href="Style/Admin.css">
-</head>
-<body>
-     <nav>
-      <p1 class="logo">LOGO</p1>
-    <button>Overzicht Video's</button>
-    <button>Nieuwe video</button>
-    <button>Uitloggen</button>
- </nav>
-    <form class="search-bar">
-  <input type="text" placeholder="Zoek in deze pagina..." name="search">
-  <button type="zoek">Zoek</button>
-</form>
-<p1 class="Welkom"><b>Welkom, Admin</b></p1>
-<br>
-<p1 class = "Overzicht"> Overzicht video's</p1>
-<table>
-  <tr>
-    <th>Titel</th>
-    <th>Upload datum</th>
-    <th>Bewerk</th>
-    <th>Verwijder</th>
-  </tr>
-  <tr>
-    <td>Video titel</td>
-    <td>DD-MM-YYYY</td>
-    <td> <button class ="Bewerk">Bewerk</button></td>
-    <td> <button class ="Verwijder">Verwijder</button></td>
-  </tr>
-  <tr>
-    <td>Video titel</td>
-    <td>DD-MM-YYYY</td>
-   <td> <button class ="Bewerk">Bewerk</button></td>
-   <td> <button class ="Verwijder">Verwijder</button></td>
-  </tr>
-  <tr>
-    <td>Video titel</td>
-    <td>DD-MM-YYYY</td>
-    <td> <button class ="Bewerk">Bewerk</button></td>
-    <td> <button class ="Verwijder">Verwijder</button></td>
-  </tr>
-  <tr>
-    <td>Video titel</td>
-    <td>DD-MM-YYYY</td>
-    <td> <button class ="Bewerk">Bewerk</button></td>
-    <td> <button class ="Verwijder">Verwijder</button></td>
-  </tr>
-  <tr>
-    <td>Video titel</td>
-    <td>DD-MM-YYYY</td>
-   <td> <button class ="Bewerk">Bewerk</button></td>
-    <td> <button class ="Verwijder">Verwijder</button></td>
-  </tr>
-  <tr>
-    <td>Video titel</td>
-    <td>DD-MM-YYYY</td>
-    <td> <button class ="Bewerk">Bewerk</button></td>
-    <td> <button class ="Verwijder">Verwijder</button></td>
-  </tr>
-</table>   
-<button class = "Vorige"> Vorige</button>
-<button class= "Volgende"> Volgende</button>
-  <?php
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "mydb";
- 
+
 try {
-  $conn = new PDO("mysql:host=$servername;dbname,$dbname", $username, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "Connected successfully";
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Verbinding mislukt: " . $e->getMessage());
 }
-?>  
+
+$stmt = $pdo->query("SELECT * FROM videos ORDER BY upload_date DESC");
+$videos = $stmt->fetchAll();
+?>
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FilmFlix</title>
+    <link rel="stylesheet" href="Style/Admin.css">
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="video.php">Video's</a></li>
+      <li><a href="Admin.php">Admin</a></li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="admin-nav">
+    <p class="logo">FilmFlix</p>
+    <button>Overzicht Video's</button>
+    <button>Nieuwe video</button>
+    <button>Uitloggen</button>
+</nav>
+
+<form class="search-bar">
+    <input type="text" placeholder="Zoek in deze pagina..." name="search">
+    <button type="button">Zoek</button>
+</form>
+
+<p class="Welkom"><b>Welkom, Admin</b></p>
+<br>
+<p class="Overzicht">Overzicht video's</p>
+
+<table>
+    <tr>
+        <th>Titel</th>
+        <th>Upload datum</th>
+        <th>Bewerk</th>
+        <th>Verwijder</th>
+    </tr>
+    <?php if (empty($videos)): ?>
+    <tr>
+        <td colspan="4">Geen video's gevonden.</td>
+    </tr>
+    <?php else: ?>
+        <?php foreach ($videos as $video): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($video['title']); ?></td>
+            <td><?php echo date('d-m-Y', strtotime($video['upload_date'])); ?></td>
+            <td><button class="Bewerk">Bewerk</button></td>
+            <td><button class="Verwijder">Verwijder</button></td>
+        </tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</table>
+
+<button class="Vorige">Vorige</button>
+<button class="Volgende">Volgende</button>
+
 </body>
 </html>
