@@ -98,5 +98,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 
 <?php endif; ?>
 
+<<<<<<< HEAD
+<p>Username:</p>
+<p>Geplaats op DD-MM-YYYY:</p>
+<P>Comment van de gebruiker:</P>
+
+<hr class="divider">
+
+<h2>Nieuwe reactie</h2>
+
+<textarea rows="4" cols="50" placeholder="Plaats hier je reactie..."></textarea>
+
+
+<button>Reactie Plaatsen</button>
+
+
+
+    
+    
+=======
+>>>>>>> fe3559adced7d4d7725634d4221cdc3fd7c115cb
 </body>
 </html>

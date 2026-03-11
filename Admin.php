@@ -76,4 +76,5 @@ $videos = $stmt->fetchAll();
 <button class="Volgende">Volgende</button>
 
 </body>
+
 </html>
