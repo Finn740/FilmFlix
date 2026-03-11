@@ -18,7 +18,9 @@
   </nav>
 </header>
 
+<a href="index.php"><img src="images/film_flix-nobg.png" alt="Logo" class="logo">
 <img src ="images/film_flix-nobg.png" alt="Logo" class="logo">
+</a>
 
 <h1>Video Titel</h1>
 <p>Beschrijving van de video</p>    
