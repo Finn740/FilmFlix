@@ -23,10 +23,10 @@ $stmtComments->execute([$id]);
 $comments = $stmtComments->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
-    $username = htmlspecialchars(trim($_POST['username'] ?? 'Anoniem'));
-    $comment  = htmlspecialchars(trim($_POST['comment']));
+    $user    = htmlspecialchars(trim($_POST['username'] ?? 'Anoniem'));
+    $comment = htmlspecialchars(trim($_POST['comment']));
     $stmtInsert = $pdo->prepare("INSERT INTO comments (video_id, username, comment, created_at) VALUES (?, ?, ?, NOW())");
-    $stmtInsert->execute([$id, $username, $comment]);
+    $stmtInsert->execute([$id, $user, $comment]);
     header("Location: video.php?id=$id");
     exit;
 }
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $video ? htmlspecialchars($video['title']) . ' - FilmFlix' : 'Video niet gevonden'; ?></title>
+    <title><?php echo $video ? htmlspecialchars($video['videoName']) . ' - FilmFlix' : 'Video niet gevonden'; ?></title>
     <link rel="stylesheet" href="Style/video.css">
     <link rel="stylesheet" href="Style/Style.css">
 </head>
@@ -61,15 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 <?php else: ?>
 
 <div style="padding: 20px 40px;">
-    <h1><?php echo htmlspecialchars($video['title']); ?></h1>
-    <p><?php echo htmlspecialchars($video['description']); ?></p>
+    <h1><?php echo htmlspecialchars($video['videoName']); ?></h1>
+    <p><?php echo htmlspecialchars($video['videoDescription']); ?></p>
 
     <video width="600" controls>
-        <source src="<?php echo htmlspecialchars($video['file_path']); ?>" type="video/mp4">
+        <source src="<?php echo htmlspecialchars($video['videoLink']); ?>" type="video/mp4">
         Jouw browser ondersteunt de video tag niet.
     </video>
-
-    <p>Geüpload op: <?php echo date('d-m-Y', strtotime($video['upload_date'])); ?></p>
 
     <hr class="divider">
     <h2>Reacties</h2>
