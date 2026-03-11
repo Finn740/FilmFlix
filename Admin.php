@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "mydb";
+$dbname = "filmflix";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -12,7 +12,7 @@ try {
     die("Verbinding mislukt: " . $e->getMessage());
 }
 
-$stmt = $pdo->query("SELECT * FROM videos");
+$stmt = $pdo->query("SELECT * FROM video");
 $videos = $stmt->fetchAll();
 ?>
 

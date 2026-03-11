@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "mydb";
+$dbname = "filmflix";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -14,7 +14,7 @@ try {
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$stmt = $pdo->prepare("SELECT * FROM videos WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM video WHERE id = ?");
 $stmt->execute([$id]);
 $video = $stmt->fetch();
 

@@ -12,7 +12,7 @@ try {
     die("Verbinding mislukt: " . $e->getMessage());
 }
 
-$stmt = $pdo->query("SELECT * FROM videos");
+$stmt = $pdo->query("SELECT * FROM video");
 $videos = $stmt->fetchAll();
 ?>
 
