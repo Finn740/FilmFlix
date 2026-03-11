@@ -12,7 +12,7 @@ try {
     die("Verbinding mislukt: " . $e->getMessage());
 }
 
-$stmt = $pdo->query("SELECT * FROM videos ORDER BY upload_date DESC");
+$stmt = $pdo->query("SELECT * FROM videos");
 $videos = $stmt->fetchAll();
 ?>
 
@@ -54,19 +54,17 @@ $videos = $stmt->fetchAll();
 <table>
     <tr>
         <th>Titel</th>
-        <th>Upload datum</th>
         <th>Bewerk</th>
         <th>Verwijder</th>
     </tr>
     <?php if (empty($videos)): ?>
     <tr>
-        <td colspan="4">Geen video's gevonden.</td>
+        <td colspan="3">Geen video's gevonden.</td>
     </tr>
     <?php else: ?>
         <?php foreach ($videos as $video): ?>
         <tr>
-            <td><?php echo htmlspecialchars($video['title']); ?></td>
-            <td><?php echo date('d-m-Y', strtotime($video['upload_date'])); ?></td>
+            <td><?php echo htmlspecialchars($video['videoName']); ?></td>
             <td><button class="Bewerk">Bewerk</button></td>
             <td><button class="Verwijder">Verwijder</button></td>
         </tr>
