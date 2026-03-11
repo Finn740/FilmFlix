@@ -12,7 +12,7 @@ try {
     die("Verbinding mislukt: " . $e->getMessage());
 }
 
-$stmt = $pdo->query("SELECT * FROM videos ORDER BY upload_date DESC");
+$stmt = $pdo->query("SELECT * FROM videos");
 $videos = $stmt->fetchAll();
 ?>
 
@@ -52,11 +52,10 @@ $videos = $stmt->fetchAll();
     <?php else: ?>
         <?php foreach ($videos as $video): ?>
         <div class="video-card">
-            <img src="<?php echo htmlspecialchars($video['thumbnail'] ?? 'images/placeholder.jpg'); ?>" alt="Video thumbnail">
+            <img src="images/placeholder.jpg" alt="Video thumbnail">
             <div class="video-content">
-                <h2><?php echo htmlspecialchars($video['title']); ?></h2>
-                <p><?php echo htmlspecialchars($video['description']); ?></p>
-                <p>Geüpload op: <?php echo date('d-m-Y', strtotime($video['upload_date'])); ?></p>
+                <h2><?php echo htmlspecialchars($video['videoName']); ?></h2>
+                <p><?php echo htmlspecialchars($video['videoDescription']); ?></p>
                 <a href="video.php?id=<?php echo (int)$video['id']; ?>">
                     <button>BEKIJK VIDEO</button>
                 </a>
