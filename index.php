@@ -1,12 +1,29 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mydb";
 
+try {
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Verbinding mislukt: " . $e->getMessage());
+}
+
+$stmt = $pdo->query("SELECT * FROM videos ORDER BY upload_date DESC");
+$videos = $stmt->fetchAll();
+?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <link rel="stylesheet" href="Style/homepage.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FilmFlix - Home</title>
+    <link rel="stylesheet" href="Style/homepage.css">
+    <link rel="stylesheet" href="Style/Style.css">
 </head>
 <body>
 <header>
@@ -18,68 +35,55 @@
     </ul>
   </nav>
 </header>
+
 <section id="welcome">
-    <h1>Welkom bij film flix</h1>
-    <h2>bekijk onze niewste videos</h2>
+    <h1>Welkom bij FilmFlix</h1>
+    <h2>Bekijk onze nieuwste video's</h2>
     <div class="search-container">
-        <input type="text" placeholder="Zoeken">
-        <button>🔍</button>
+        <input type="text" id="searchInput" placeholder="Zoeken..." onkeyup="filterVideos()">
+        <button onclick="filterVideos()">🔍</button>
     </div>
     <hr class="divider">
 </section>
+
 <section id="videos">
-    <div id="video1">
-        <img src="images/placeholder.jpg" alt="Video thumbnail">
-        <div class="video-content">
-            <h2>Featured videos</h2>
-            <h4>video titel</h4>
-            <p>beschrijving van de video</p>
-            <p>geupload op: dd-mm-yy</p>
-            <button>BEKIJK VIDEO</button>
+    <?php if (empty($videos)): ?>
+        <p style="padding-left: 50px;">Geen video's gevonden.</p>
+    <?php else: ?>
+        <?php foreach ($videos as $video): ?>
+        <div class="video-card">
+            <img src="<?php echo htmlspecialchars($video['thumbnail'] ?? 'images/placeholder.jpg'); ?>" alt="Video thumbnail">
+            <div class="video-content">
+                <h2><?php echo htmlspecialchars($video['title']); ?></h2>
+                <p><?php echo htmlspecialchars($video['description']); ?></p>
+                <p>Geüpload op: <?php echo date('d-m-Y', strtotime($video['upload_date'])); ?></p>
+                <a href="video.php?id=<?php echo (int)$video['id']; ?>">
+                    <button>BEKIJK VIDEO</button>
+                </a>
+            </div>
         </div>
-    </div>
-    <hr class="divider">
-    
-    <div id="video2">
-        <img src="images/placeholder.jpg" alt="Video thumbnail">
-        <div class="video-content">
-            <h2>video titel</h2>
-            <p>beschrijving van de video</p>
-            <p>geupload op: dd-mm-yy</p>
-            <button>BEKIJK VIDEO</button>
-        </div>
-    </div>
-    <hr class="divider">
-    
-    <div id="video3">
-        <img src="images/placeholder.jpg" alt="Video thumbnail">
-        <div class="video-content">
-            <h2>video titel</h2>
-            <p>beschrijving van de video</p>
-            <p>geupload op: dd-mm-yy</p>
-            <button>BEKIJK VIDEO</button>
-        </div>
-    </div>
-    <hr class="divider">
-    
-    <div id="video4">
-        <img src="images/placeholder.jpg" alt="Video thumbnail">
-        <div class="video-content">
-            <h2>video titel</h2>
-            <p>beschrijving van de video</p>
-            <p>geupload op: dd-mm-yy</p>
-            <button>BEKIJK VIDEO</button>
-        </div>
-    </div>
-    <hr class="divider">
-    
-    <br>
-    <br>
+        <hr class="divider">
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <br><br>
     <div id="nextBack">
-    <button>vorige</button>
-    <button>volgende</button>
+        <button>Vorige</button>
+        <button>Volgende</button>
     </div>
-</section>   
+</section>
+
+<script>
+function filterVideos() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.video-card');
+    cards.forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        card.style.display = (title.includes(input) || desc.includes(input)) ? 'flex' : 'none';
+    });
+}
+</script>
 
 </body>
 </html>
