@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> b70361d1ae2488921c58058719d3d36874ca646a
 <?php
 $servername = "localhost";
 $username = "root";
