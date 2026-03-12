@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -18,7 +17,7 @@ $stmt = $pdo->query("SELECT * FROM video");
 $videos = $stmt->fetchAll();
 ?>
 
->>>>>>> fe3559adced7d4d7725634d4221cdc3fd7c115cb
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
