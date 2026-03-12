@@ -37,9 +37,9 @@ $videos = $stmt->fetchAll();
 
 <nav class="admin-nav">
     <p class="logo">FilmFlix</p>
-    <button>Overzicht Video's</button>
-    <button>Nieuwe video</button>
-    <button>Uitloggen</button>
+    <button>Home</button>
+    <button>Video's</button>
+    <button>Admin</button>
 </nav>
 
 <form class="search-bar">
