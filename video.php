@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 =======
     <title>Video Detail Page</title>
     <link rel="stylesheet" href="Style/video.css">
->>>>>>> da754adbbb19698a96ab6ed11db7c9eaf51363e8
+
 </head>
 <body>
 <header>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
     <p><?php echo htmlspecialchars($video['videoDescription']); ?></p>
 
     <video width="600" controls>
-        <source src="<?php echo htmlspecialchars($video['videoLink']); ?>" type="video/mp4">
+        <source src="../videos/"<?php echo htmlspecialchars($video['videoLink']); ?> type="video/mp3">
         Jouw browser ondersteunt de video tag niet.
     </video>
 
@@ -116,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 
     
     
-=======
->>>>>>> fe3559adced7d4d7725634d4221cdc3fd7c115cb
+
 </body>
 </html>
