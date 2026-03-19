@@ -4,14 +4,14 @@ background-color: #f4f4f4;
 margin: 0;
 padding: 0;
 }
-nav {
+nav.navbar {
 background-color: black;
 color: #fff;
-padding: 28px;
+padding: 35px;
 text-align: right;
 position: relative;
 top:0px;
-
+height: 20px;
 }
 button {
 background-color:black;
@@ -20,33 +20,34 @@ border: none;
 padding: 10px 30px;
 margin-left: 45px;
 cursor: pointer;
+font-size: large;
+
 }
 button:hover {
-background-color: #777;
-}
-.logo {
-font-size: 30px;
-color: white;
-float: left;
-margin-right: 20px;
+    color: #8781a2;
+    transition: color 0.2s ease-in-out;
 }
 .Welkom {
 font-size: 32px;
-margin: 20px;
+margin: -20px;
+left:-1250px;
 position:relative;
-top:10px;
+top:0px;
+
 }
 .Overzicht {
 font-size: 24px;
 left:20px;
 position:relative;
 top:20px;
+width:90%;
 }
 .search-bar {
   left: 20px;
   position: relative;
-  top: 160px;
+  top: 10px;
   width: 95%;
+  height: 30px;
 }
 .search-bar input {
 width: 90%; 
@@ -54,8 +55,8 @@ padding: 10px;
 box-sizing: border-box; 
 }
 .search-bar button { 
-    position:relative;
-    left:-25px;
+    position:absolute;
+    right: 46px;
     height:39px;
 }
 table {
@@ -63,7 +64,7 @@ table {
   border-collapse: collapse;
   width: 98%;
   position: relative;
-  top:135px;
+  top:60px;
   left:18px;
   padding:4px;
 }
@@ -92,4 +93,13 @@ left:65px;
 position: relative;
 top:140px;
 left: 700px;
+}
+.form-box {
+    background-color: white;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 8px;
+    width: 90%;
+    position: relative;
+    top: 10px;
 }
