@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
     <p><?php echo htmlspecialchars($video['videoDescription']); ?></p>
 
     <video width="600" controls>
-        <source src="../videos/"<?php echo htmlspecialchars($video['videoLink']); ?> type="video/mp3">
+<source src="<?php echo htmlspecialchars($video['videoLink']); ?>" type="video/mp4">
         Jouw browser ondersteunt de video tag niet.
     </video>
 
