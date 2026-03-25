@@ -14,6 +14,30 @@ try {
 
 $stmt = $pdo->query("SELECT * FROM video");
 $videos = $stmt->fetchAll();
+
+if (isset($_GET['delete'])) {
+    $deleteId = (int)$_GET['delete'];
+    $stmt = $pdo->prepare("DELETE FROM video WHERE id = ?");
+    $stmt->execute([$deleteId]);
+    header("Location: Admin.php");
+    exit;
+}
+
+if (isset($_POST['submit'])) {
+    $videoName        = htmlspecialchars(trim($_POST['videoName']));
+    $videoDescription = htmlspecialchars(trim($_POST['videoDescription']));
+    $fileName         = basename($_FILES['fileToUpload']['name']);
+    $uploadPath       = 'videos/' . $fileName;
+
+    if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
+        $stmt = $pdo->prepare("INSERT INTO video (videoName, videoDescription, videoLink) VALUES (?, ?, ?)");
+        $stmt->execute([$videoName, $videoDescription, $uploadPath]);
+        header("Location: Admin.php");
+        exit;
+    } else {
+        echo "Upload mislukt.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +66,22 @@ $videos = $stmt->fetchAll();
     <button>Admin</button>
 </nav>
 
-<form class="search-bar">
-    <input type="text" placeholder="Zoek in deze pagina..." name="search">
-    <button type="button">Zoek</button>
-</form>
 
 <p class="Welkom"><b>Welkom, Admin</b></p>
+
+<div class="form-box">
+    <h2>Video toevoegen</h2>
+    <form method="POST" action="Admin.php" enctype="multipart/form-data">
+        <label>Naam:</label>
+        <input type="text" name="videoName" placeholder="Naam van de video" required><br>
+        <label>Beschrijving:</label>
+        <textarea name="videoDescription" rows="3" placeholder="Beschrijving van de video"></textarea><br>
+        <label>Video bestand:</label>
+        <input type="file" name="fileToUpload" accept="video/mp4" required><br>
+        <input type="submit" value="Upload video" name="submit">
+    </form>
+</div>
+
 <br>
 <p class="Overzicht">Overzicht video's</p>
 
@@ -66,7 +100,11 @@ $videos = $stmt->fetchAll();
         <tr>
             <td><?php echo htmlspecialchars($video['videoName']); ?></td>
             <td><button class="Bewerk">Bewerk</button></td>
-            <td><button class="Verwijder">Verwijder</button></td>
+            <td>
+                <a href="Admin.php?delete=<?php echo $video['id']; ?>" onclick="return confirm('Weet je zeker dat je deze video wilt verwijderen?')">
+                    <button class="Verwijder">Verwijder</button>
+                </a>
+            </td>
         </tr>
         <?php endforeach; ?>
     <?php endif; ?>
@@ -76,5 +114,4 @@ $videos = $stmt->fetchAll();
 <button class="Volgende">Volgende</button>
 
 </body>
-
 </html>
