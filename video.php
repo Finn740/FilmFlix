@@ -107,10 +107,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 
 <h2>Nieuwe reactie</h2>
 
-<textarea rows="4" cols="50" placeholder="Plaats hier je reactie..."></textarea>
+<!-- Comment sectie -->
+<div class="wrap">
 
+  <!-- Nieuw commentaar invoer -->
+  <div class="new-comment">
+    <div class="input-area">
+      <textarea id="ta" placeholder="Schrijf een reactie..."></textarea>
+      <div class="actions">
+        <button id="btn" disabled onclick="postComment()">Plaatsen</button>
+      </div>
+    </div>
+  </div>
 
-<button>Reactie Plaatsen</button>
+  <hr />
+
+  <!-- Lijst met geplaatste reacties -->
+  <div id="list">
+    <p id="empty">Nog geen reacties. Wees de eerste!</p>
+  </div>
+
+</div>
+
+<script>
+  const ta = document.getElementById('ta');
+  const btn = document.getElementById('btn');
+  const list = document.getElementById('list');
+  const empty = document.getElementById('empty');
+
+  // Knop inschakelen zodra er tekst is
+  ta.addEventListener('input', () => {
+    btn.disabled = ta.value.trim().length === 0;
+  });
+
+  function postComment() {
+    const text = ta.value.trim();
+    if (!text) return;
+
+    // Verberg "geen reacties"-melding
+    empty.style.display = 'none';
+
+    // Maak nieuw commentaar-element
+    const el = document.createElement('div');
+    el.className = 'comment';
+    el.innerHTML = `
+      <strong>Jij</strong>
+      <span class="time">zojuist</span>
+      <p>${text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+    `;
+
+    list.appendChild(el);
+
+    // Reset invoerveld
+    ta.value = '';
+    btn.disabled = true;
+  }
+</script>
+
 
 
 
