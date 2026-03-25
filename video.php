@@ -37,18 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
+
     <title><?php echo $video ? htmlspecialchars($video['videoName']) . ' - FilmFlix' : 'Video niet gevonden'; ?></title>
     <link rel="stylesheet" href="Style/video.css">
     <link rel="stylesheet" href="Style/Style.css">
-=======
+
     <title>Video Detail Page</title>
     <link rel="stylesheet" href="Style/video.css">
 
 </head>
 <body>
 <header>
-  <nav>
+  <nav class="navbar">
     <ul>
       <li><a href="index.php">Home</a></li>
       <li><a href="video.php">Video's</a></li>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['comment'])) {
 
 <?php endif; ?>
 
-<<<<<<< HEAD
+
 <p>Username:</p>
 <p>Geplaats op DD-MM-YYYY:</p>
 <P>Comment van de gebruiker:</P>

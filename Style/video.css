@@ -11,10 +11,6 @@ margin: 0;
 padding: 0;
 }
 
-ul {
-    list-style: none;
-    text-align: center; 
-}
 
 li {
     display: inline;
@@ -28,16 +24,13 @@ color: #fff;
 padding: 28px;
 text-align: right;
 position: relative;
-top:0px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 8px;
+    font-weight: 0;
+    border-radius: 0px;
     transition: all 0.3s ease;
 }
 

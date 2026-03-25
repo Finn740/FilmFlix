@@ -74,11 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_video'])) {
     <h2>Video toevoegen</h2>
     <form method="POST" action="Admin.php" enctype="multipart/form-data">
         <label>Naam:</label>
-        <input type="text" name="videoName" placeholder="Naam van de video" required><br>
+        <input type="text" name="videoName" placeholder="Naam van de video" required>
         <label>Beschrijving:</label>
-        <textarea name="videoDescription" rows="3" placeholder="Beschrijving van de video"></textarea><br>
+        <input name="videoDescription" placeholder="Beschrijving van video"></input>
         <label>Video bestand:</label>
-        <input type="file" name="fileToUpload" accept="video/mp4" required><br>
+        <input type="file" name="fileToUpload" accept="video/mp4" required><br><br>
         <input type="submit" value="Upload video" name="submit">
     </form>
 </div>
